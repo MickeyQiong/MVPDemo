@@ -1,0 +1,33 @@
+ext{
+    android=[
+            compileSdkVersion : 28,
+            minSdkVersion : 19,
+            targetSdkVersion : 28,
+            versionCode : 1,
+            versionName : "1.0"
+    ]
+
+    dependVersion=[
+            androidSupportSdkVersion : "28.0.0"
+    ]
+
+    testDeps=[
+            "junit"                    : 'junit:junit:4.12',
+            "ruuner"                   : 'com.android.support.test:runner:1.0.2',
+            "espresso-core"            : "com.android.support.test.espresso:espresso-core:3.0.2",
+            "leakcanary-debug"         : "com.squareup.leakcanary:leakcanary-android:1.6.1",
+            "leakcanary-release"       : 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1',
+            "leakcanary-debug-fragment": 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
+    ]
+
+    support=[
+            "appcompat-v7" : "com.android.support:appcompat-v7:${dependVersion.androidSupportSdkVersion}"
+    ]
+
+    comment=[
+            "multidex" : "com.android.support:multidex:1.0.3"
+    ]
+
+    supportLibs = support.values()
+    commentLibs = comment.values()
+}
