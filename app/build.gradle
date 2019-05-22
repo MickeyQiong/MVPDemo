@@ -31,4 +31,6 @@ dependencies {
 
     implementation rootProject.ext.commentLibs
 
+    implementation rootProject.ext.networkLibs
+
 }

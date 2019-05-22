@@ -1,33 +1,45 @@
-ext{
-    android=[
-            compileSdkVersion : 28,
-            minSdkVersion : 19,
+ext {
+    android = [
+            compileSdkVersion: 28,
             targetSdkVersion : 28,
-            versionCode : 1,
-            versionName : "1.0"
+            minSdkVersion    : 19,
+            versionCode      : 1,
+            versionName      : "1.0"
     ]
 
-    dependVersion=[
-            androidSupportSdkVersion : "28.0.0"
+    dependVersion = [
+            androidSupportSdkVersion: "28.0.0",
+            retrofitVersion         : "2.4.0",
+            rxAndroid: "2.1.0"
     ]
 
-    testDeps=[
+    testDeps = [
             "junit"                    : 'junit:junit:4.12',
             "ruuner"                   : 'com.android.support.test:runner:1.0.2',
             "espresso-core"            : "com.android.support.test.espresso:espresso-core:3.0.2",
             "leakcanary-debug"         : "com.squareup.leakcanary:leakcanary-android:1.6.1",
             "leakcanary-release"       : 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1',
-            "leakcanary-debug-fragment": 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
+            "leakcanary-debug-fragment": 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1',
+            "butterknife":"com.jakewharton:butterknife-compiler:8.8.1"
     ]
 
-    support=[
-            "appcompat-v7" : "com.android.support:appcompat-v7:${dependVersion.androidSupportSdkVersion}"
+    support = [
+            "appcompat-v7": "com.android.support:appcompat-v7:${dependVersion.androidSupportSdkVersion}",
     ]
 
-    comment=[
-            "multidex" : "com.android.support:multidex:1.0.3"
+    retrofit = [
+            "retrofit2"     : "com.squareup.retrofit2:retrofit:${dependVersion.retrofitVersion}",
+            "converter-gson": "com.squareup.retrofit2:converter-gson:${dependVersion.retrofitVersion}",
+            "rxjava"        : "com.squareup.retrofit2:adapter-rxjava2:${dependVersion.retrofitVersion}",
+            "rxAndroid": "io.reactivex.rxjava2:rxandroid:${dependVersion.rxAndroid}",
+            "okhttp3LoggerInterceptor": 'com.squareup.okhttp3:logging-interceptor:3.11.0',
+    ]
+
+    comment = [
+            "multidex": "com.android.support:multidex:1.0.3",
     ]
 
     supportLibs = support.values()
     commentLibs = comment.values()
+    networkLibs = retrofit.values()
 }

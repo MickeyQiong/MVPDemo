@@ -13,6 +13,8 @@ import com.squareup.leakcanary.RefWatcher;
  */
 public class App extends MultiDexApplication {
 
+    public static Context mAppContext;
+
     private RefWatcher refWatcher;
 
     public static RefWatcher getRefWatcher(Context context){
@@ -23,6 +25,15 @@ public class App extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        refWatcher = LeakCanary.install(this);
+        mAppContext = this;
+        refWatcher = setupLeakCanary();
+    }
+
+    private RefWatcher setupLeakCanary(){
+        if (LeakCanary.isInAnalyzerProcess(this)){
+            return RefWatcher.DISABLED;
+        }else {
+            return LeakCanary.install(this);
+        }
     }
 }
