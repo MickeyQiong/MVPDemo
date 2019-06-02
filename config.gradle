@@ -37,6 +37,13 @@ ext {
 
     comment = [
             "multidex": "com.android.support:multidex:1.0.3",
+            "exoplayer-core":"com.google.android.exoplayer:exoplayer-core:2.9.4",
+            "extension-mediasession":"com.google.android.exoplayer:extension-mediasession:2.9.4",
+            "exoplayer-dash": "com.google.android.exoplayer:exoplayer-dash:2.9.4" ,  //dash 支持
+            "exoplayer-hls":"com.google.android.exoplayer:exoplayer-hls:2.9.4"  ,  //hls 支持
+            "exoplayer-sommthstreaming": "com.google.android.exoplayer:exoplayer-smoothstreaming:2.9.4", //smoothstreaming支持
+            "extension-rtmp":"com.google.android.exoplayer:extension-rtmp:2.9.4" , //rtmp 支持
+            "exoplayer-ui" :"com.google.android.exoplayer:exoplayer-ui:2.9.4"  //rtmp 支持
     ]
 
     supportLibs = support.values()

@@ -21,4 +21,12 @@ public class AudioManager {
         mContext = context;
 
     }
+
+    public Playback getPlayback() {
+        return mPlayback;
+    }
+
+    public void setPlayback(Playback playback) {
+        mPlayback = playback;
+    }
 }

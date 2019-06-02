@@ -35,9 +35,13 @@ public interface Playback {
 
     void setCurrentMediaId(String mediaId);
 
+    String getCurrentMediaId();
+
     void onFastForward();
 
     void onRewind();
+
+    void onDerailleur(boolean refer, float multiple);
 
     interface Callback {
         void onCompletion();
