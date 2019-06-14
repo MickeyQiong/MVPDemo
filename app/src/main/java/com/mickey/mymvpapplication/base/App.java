@@ -3,7 +3,7 @@ package com.mickey.mymvpapplication.base;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
-import com.lzx.starrysky.manager.MusicManager;
+import com.mickey.mymvpapplication.audio.AudioManager;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -26,7 +26,7 @@ public class App extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        MusicManager.initMusicManager(this);
+        AudioManager.initAudioManager(this);
         mAppContext = this;
         refWatcher = setupLeakCanary();
     }

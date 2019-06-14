@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!--允许明文传输，未知的非 http 域名配置，存在太多不确定性了-->
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
+<!--
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        &lt;!&ndash;<domain includeSubdomains="true">api.bailitop.com</domain>&ndash;&gt;&lt;!&ndash; 接口可以使用 https 因为有 ca 认证&ndash;&gt;
+        <domain includeSubdomains="true">c.bailitop.com</domain>
+        <domain includeSubdomains="true">uploadfile.bailitop.com</domain>
+        <domain includeSubdomains="true">upload.bailitop.com</domain>
+        <domain includeSubdomains="true">bailiedu.gensee.com</domain>
+        <domain includeSubdomains="true">cache.gensee.com</domain>
+        <domain includeSubdomains="true">ese3a5b0c3d6fg.pri.qiqiuyun.net</domain>
+    </domain-config>
+</network-security-config>-->

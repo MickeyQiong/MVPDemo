@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <TableLayout
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+        <TableRow>
+            <Button android:id="@+id/joker_b" android:text="大王" />
+            <Button android:id="@+id/joker_s" android:text="小王" />
+            <Button android:id="@+id/two" android:text="2" />
+        </TableRow>
+        <TableRow>
+            <Button android:id="@+id/one" android:text="A" />
+            <Button android:id="@+id/king" android:text="K" />
+            <Button android:id="@+id/queen" android:text="Q" />
+        </TableRow>
+        <TableRow>
+            <Button android:id="@+id/jack" android:text="J" />
+            <Button android:id="@+id/ten" android:text="10" />
+            <Button android:id="@+id/nine" android:text="9" />
+        </TableRow>
+        <TableRow>
+            <Button android:id="@+id/eight" android:text="8" />
+            <Button android:id="@+id/seven" android:text="7" />
+            <Button android:id="@+id/six" android:text="6" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

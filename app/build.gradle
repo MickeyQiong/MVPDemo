@@ -18,6 +18,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -32,6 +37,9 @@ dependencies {
     implementation rootProject.ext.commentLibs
 
     implementation rootProject.ext.networkLibs
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.9.4'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.9.4'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
 
-    implementation 'com.lzx:StarrySkyJava:2.1.9'
 }

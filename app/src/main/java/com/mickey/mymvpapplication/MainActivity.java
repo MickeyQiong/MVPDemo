@@ -1,16 +1,17 @@
 package com.mickey.mymvpapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-import com.lzx.starrysky.manager.MediaSessionConnection;
-import com.lzx.starrysky.manager.MusicManager;
-import com.lzx.starrysky.manager.OnPlayerEventListener;
-import com.lzx.starrysky.model.SongInfo;
-import com.lzx.starrysky.utils.TimerTaskManager;
+import com.mickey.mymvpapplication.audio.AudioInfo;
+import com.mickey.mymvpapplication.audio.AudioManager;
+import com.mickey.mymvpapplication.audio.MediaSessionConnection;
 import com.mickey.mymvpapplication.base.BaseMVPActivity;
+import com.mickey.mymvpapplication.jipaiqi.JiPaiQiActivity;
 import com.mickey.mymvpapplication.mvp.beans.User;
 import com.mickey.mymvpapplication.mvp.contract.UserInfoContract;
 import com.mickey.mymvpapplication.mvp.presenter.UserInfoPresenter;
@@ -18,43 +19,47 @@ import com.mickey.mymvpapplication.mvp.presenter.UserInfoPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseMVPActivity<UserInfoContract.View,UserInfoContract.Presenter> implements UserInfoContract.View, OnPlayerEventListener {
+public class MainActivity extends BaseMVPActivity<UserInfoContract.View,UserInfoContract.Presenter> implements UserInfoContract.View, View.OnClickListener {
 
-    private static final String TAG = "MainActivity";
     TextView textView;
-    List<SongInfo> list = new ArrayList<>();
-    MediaSessionConnection mediaSessionConnection;
-    TimerTaskManager timerTaskManager;
+    Button button;
+    MediaSessionConnection sessionConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter.getUserInfo("MickeyQiong");
-
-        mediaSessionConnection = MediaSessionConnection.getInstance();
-        timerTaskManager = new TimerTaskManager();
-
-        MusicManager.getInstance().addPlayerEventListener(this);
-
-        SongInfo s1 = new SongInfo();
-        s1.setSongId("111");
-        s1.setSongUrl("http://music.163.com/song/media/outer/url?id=317151.mp3&a=我");
-        s1.setSongCover("https://www.qqkw.com/d/file/p/2018/04-21/c24fd86006670f964e63cb8f9c129fc6.jpg");
-        s1.setSongName("心雨");
-        s1.setArtist("贤哥");
-        list.add(s1);
     }
 
     @Override
     protected void initView() {
         super.initView();
+        button = findViewById(R.id.button);
+        button.setOnClickListener(this);
         textView = findViewById(R.id.text);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MusicManager.getInstance().playMusic(list,0);
-            }
-        });
+        sessionConnection = MediaSessionConnection.getInstance();
+        List<AudioInfo> list = new ArrayList<>();
+        final AudioInfo audioInfo = new AudioInfo();
+        audioInfo.audioId = "1";
+        audioInfo.audioName = "心雨";
+        audioInfo.audioCover = "https://www.qqkw.com/d/file/p/2018/04-21/c24fd86006670f964e63cb8f9c129fc6.jpg";
+        audioInfo.audioUrl = "http://music.163.com/song/media/outer/url?id=317151.mp3&a=我";
+        list.add(audioInfo);
+
+
+        textView.setOnClickListener(v -> AudioManager.getInstance().playMusicByInfo(list));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        sessionConnection.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        sessionConnection.disconnect();
     }
 
     @Override
@@ -88,49 +93,7 @@ public class MainActivity extends BaseMVPActivity<UserInfoContract.View,UserInfo
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        mediaSessionConnection.connect();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mediaSessionConnection.disconnect();
-    }
-
-    @Override
-    public void onMusicSwitch(SongInfo songInfo) {
-
-    }
-
-    @Override
-    public void onPlayerStart() {
-        Log.e(TAG,"onPlayerStart");
-    }
-
-    @Override
-    public void onPlayerPause() {
-
-    }
-
-    @Override
-    public void onPlayerStop() {
-
-    }
-
-    @Override
-    public void onPlayCompletion(SongInfo songInfo) {
-
-    }
-
-    @Override
-    public void onBuffering() {
-
-    }
-
-    @Override
-    public void onError(int errorCode, String errorMsg) {
-
+    public void onClick(View v) {
+        startActivity(new Intent(this, JiPaiQiActivity.class));
     }
 }
