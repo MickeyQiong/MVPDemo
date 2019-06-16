@@ -38,7 +38,7 @@ public class MainActivity extends BaseMVPActivity<UserInfoContract.View,UserInfo
         button.setOnClickListener(this);
         textView = findViewById(R.id.text);
         sessionConnection = MediaSessionConnection.getInstance();
-        List<AudioInfo> list = new ArrayList<>();
+        final List<AudioInfo> list = new ArrayList<>();
         final AudioInfo audioInfo = new AudioInfo();
         audioInfo.audioId = "1";
         audioInfo.audioName = "心雨";
@@ -47,7 +47,12 @@ public class MainActivity extends BaseMVPActivity<UserInfoContract.View,UserInfo
         list.add(audioInfo);
 
 
-        textView.setOnClickListener(v -> AudioManager.getInstance().playMusicByInfo(list));
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AudioManager.getInstance().playMusicByInfo(list);
+            }
+        });
     }
 
     @Override
@@ -94,6 +99,9 @@ public class MainActivity extends BaseMVPActivity<UserInfoContract.View,UserInfo
 
     @Override
     public void onClick(View v) {
-        startActivity(new Intent(this, JiPaiQiActivity.class));
+//        startActivity(new Intent(this, JiPaiQiActivity.class));
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("audio/*");
+        startActivity(intent);
     }
 }
